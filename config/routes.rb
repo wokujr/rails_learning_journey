@@ -5,9 +5,13 @@ Rails.application.routes.draw do
   get "about", to:"about#index", as: :about
   #or you can leave withou as: :about and it will generate automatically
 
+  get "sign_up", to:"registrations#new" 
+  post "sign_up", to:"registrations#new"
+
   root to:"main#index"
   # or you can do get "/", to:"main#index"
 
+  
 
   # Defines the root path route ("/")
   # root "articles#index"

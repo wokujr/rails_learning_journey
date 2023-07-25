@@ -1,4 +1,6 @@
 class MainController < AboutController
-    def main
+    def index
+        flash.now[:notice] = "Successfully initiated"
+        flash.now[:alert] = "Something wrong happened"
     end
 end
