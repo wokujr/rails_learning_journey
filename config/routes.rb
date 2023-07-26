@@ -3,15 +3,20 @@ Rails.application.routes.draw do
 
   # My defined Route HERE
   get "about", to: "about#index", as: :about
-  #or you can leave withou as: :about and it will generate automatically
+  # can leave without (as: :about) and it will generate automatically
 
-  get "sign_up", to: "registrations#new" 
+  get "sign_up", to: "registrations#new"
   post "sign_up", to: "registrations#create"
 
-  root to:"main#index"
-  # or you can do get "/", to:"main#index"
+  get "sign_in", to: "session#new"
+  post "sign_in", to: "session#create"
 
-  
+  delete "logout", to: "session#delete"
+
+  root to:"main#index"
+  # can do get "/", to:"main#index"
+
+
 
   # Defines the root path route ("/")
   # root "articles#index"
