@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # My defined Route HERE
-  get "about", to:"about#index", as: :about
+  get "about", to: "about#index", as: :about
   #or you can leave withou as: :about and it will generate automatically
 
-  get "sign_up", to:"registrations#new" 
-  post "sign_up", to:"registrations#new"
+  get "sign_up", to: "registrations#new" 
+  post "sign_up", to: "registrations#create"
 
   root to:"main#index"
   # or you can do get "/", to:"main#index"
