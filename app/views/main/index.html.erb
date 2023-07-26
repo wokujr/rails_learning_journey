@@ -1,13 +1,3 @@
 <div class="d-flex align-items-center justify-content-center">
     <h1 id="out-message"> HEY this ROOT and works! </h1>
 </div>
-
-<div>
-    <!-- print out to the root to check if user successfully logged in/created -->
-    <% if @user %>
-        Logged in as: <%= @user.email %>
-
-        <%=button_to "Logout", logout_path, method: :delete, class: "btn btn-warning d-flex align-items-center justify-content-center", id: "logout-btn"%>
-    <%  end %>
-
-</div>
