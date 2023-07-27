@@ -1,0 +1,28 @@
+document.addEvenetListener('DOMContentLoaded',function () {
+
+    // Get the CSRF token from the data attribute
+    const csrfToken = document.querySelector('script[data-csrf-token]').getAttribute('data-csrf-token');
+
+    const messageElement = document.getElementById('out-message');
+    const logoutButton = document.getElementById('logout-btn');
+
+    // handle logout click event
+    function handleLogout() {
+        //AJAX request to perform logout action
+        fetch('/logout', {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-Token': csrfToken, // Add the CSRF token for authenticity
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                messageElement.textContent = 'You are now logged out!';
+                logoutButton.style.display = 'none';
+            })
+            .catch(error => {
+                console.error('Logout failed:', error);
+            });
+    }
+})
+logoutButton.addEventListener('click', handleLogout);
