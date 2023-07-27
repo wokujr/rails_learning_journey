@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get "about", to: "about#index", as: :about
   # can leave without (as: :about) and it will generate automatically
 
+  get "password", to: "passwords#edit", as: :password_edit
+  patch "password", to: "passwords#update"
+
   get "sign_up", to: "registrations#new"
   post "sign_up", to: "registrations#create"
 
