@@ -3,9 +3,9 @@ class ApplicationController < ActionController::Base
   before_action :set_current_user
 
   def set_current_user
-    #check if user exist and logged in
+    ##check if user exist and logged in
     if session[:user_id]
-      #find_by will act same like logged out if user/data deleted from database
+      ##find_by will act same like logged out if user/data deleted from database
       Current.user = User.find_by(id: session[:user_id])
     end
   end

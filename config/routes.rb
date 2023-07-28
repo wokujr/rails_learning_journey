@@ -9,8 +9,6 @@ Rails.application.routes.draw do
   get "password", to: "passwords#edit", as: :password_edit
   patch "password", to: "passwords#update"
 
-
-
   get "sign_up", to: "registrations#new"
   post "sign_up", to: "registrations#create"
 
@@ -20,12 +18,16 @@ Rails.application.routes.draw do
   #reset password/ user forgot password
   get "password/reset", to: "password_resets#new"
   post "password/reset", to: "password_resets#create"
+
   #for password rest
   get "password/reset/edit", to: "password_resets#edit"
-  patch "password/reset/edit", ro: "password_resets#update"
-
+  patch "password/reset/edit/", to: "password_resets#update"
 
   delete "logout", to: "session#delete"
+
+  #witter callback route
+  get "auth/twitter/callback", to: "login#twitter"
+
 
   root to:"main#index"
   # can do get "/", to:"main#index"

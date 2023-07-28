@@ -6,9 +6,9 @@ class PasswordMailer < ApplicationMailer
   #   en.password_mailer.reset.subject
   #
   def reset
+    params[:user]
 
     #this will grab user variable(@user) from password_reset_controller that called by  ( with(user: @user) )
-    params[:user]
     @token = params[:user].signed_id(purpose: "password_reset", expires_in: 15.minutes)
 
 

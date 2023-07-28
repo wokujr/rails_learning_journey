@@ -13,22 +13,30 @@ class PasswordResetsController < ApplicationController
       #whether found or not will redirect to root_path
       redirect_to root_path, notice: "if we found your password we will send you reset password email."
 
-    else
-      if @user.nil?
-        flash[:alert] = "User doesn't exist"
-        redirect_to root_path
-      end
+
     end
   end
 
   def edit
-    @user = User.find_signed(params[:token], purpose: "password_rest")
-    ##escape when the token is invalid or its has been expired
+    @user = User.find_signed!(params[:token], purpose: "password_reset")
+    ## escape when the token is invalid or its has been expired
   rescue ActiveSupport::MessageVerifier::InvalidSignature
     redirect_to sign_in_path, alert: "Your token has been expired/invalid "
-    end
   end
 
   def update
-
+    @user = User.find_signed!(params[:token], purpose: "password_reset")
+    if @user  .update(password_params)
+      redirect_to sign_in_path, notice: "Password has been successfully reset please login"
+    else
+      render edit, status: :unprocessable_entity
+    end
   end
+
+  private
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
+
+end
+
