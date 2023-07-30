@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
+  #make sure that user login before proceed
   def require_logged_in!
     redirect_to sign_in_path, alert: "You have to sign in to proceed" if Current.user.nil?
   end

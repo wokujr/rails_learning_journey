@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   #witter callback route
   get "auth/twitter/callback", to: "login#twitter"
 
+  #generate index, new, update, show, delete automatically
+  resources :twitter_accounts
+
 
   root to:"main#index"
   # can do get "/", to:"main#index"

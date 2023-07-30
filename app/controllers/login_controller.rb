@@ -7,10 +7,11 @@ def twitter
   end
 
   #printed out the auth log method on console
-  Rails.logger.info auth
+  #Rails.logger.info auth
 
   #this is how we will create twitter account in database
-  Current.user.twitter_accounts.create(
+  twitter_account = Current.user.twitter_accounts.where(username: auth.info.nickname).first_or_initialize
+  twitter_account.update(
     name: auth.info.name,
     username: auth.info.nickname,
     image: auth.info.image,
@@ -18,7 +19,7 @@ def twitter
     secret: auth.credentials.secret,
   )
 
-  render plain: "Successfully connected your account."
+  redirect_to twitter_accounts_path, notice: "successfully connect your Account"
 end
 
   def auth

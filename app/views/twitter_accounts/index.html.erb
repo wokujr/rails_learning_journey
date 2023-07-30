@@ -1,0 +1,17 @@
+<div class="d-flex align-items-center justify-content-between">
+  <h1>Twitter Account</h1>
+
+  <!--dont know why but if use link_to its gonna give error not GET request type something something.-->
+  <%= button_to "Connect a Twitter account", "/auth/twitter", method: :post, class: "btn btn-primary", data: {turbo: "false"} %>
+</div>
+
+
+<% @twitter_accounts.each do |twitter_account| %>
+  <div class="d-flex align-items-center mb-4">
+    <div >
+      <%= image_tag twitter_account.image, class: "rounded-circle mx-2"%>
+      <%= link_to "@#{twitter_account.username}", "https://twitter.com/#{twitter_account.username}", class: "mx-2", target: :_blank%>
+    </div>
+    <%= button_to "Disconnect", twitter_account, method: :delete, data:{turbo_method: :delete, turbo_confirm: "Are you Sure want to Disconnect?"} %>
+  </div>
+<% end %>
