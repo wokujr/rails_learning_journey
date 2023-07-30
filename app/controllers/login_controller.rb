@@ -1,5 +1,4 @@
 class LoginController < ApplicationController
-
 def twitter
 
   if Current.user.nil?
