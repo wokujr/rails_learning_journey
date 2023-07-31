@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   #generate index, new, update, show, delete automatically
   resources :twitter_accounts
+  resources :tweets
 
 
   root to:"main#index"

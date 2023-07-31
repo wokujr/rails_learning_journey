@@ -1,0 +1,21 @@
+<!-- tweets/index.html.erb -->
+
+<h1 class="d-flex align-items-center justify-content-center"> Tweets </h1>
+<div class="d-flex align-items-center justify-content-center mt-4">
+
+  <!-- check if user log in or not -->
+  <%if Current.user.twitter_accounts.any? %>
+    <%= button_to "Schedule a tweet", new_tweet_path, method: :get, class: "btn btn-primary" %>
+  <%end %>
+</div>
+
+<div class="mt-4">
+  <%if Current.user.twitter_accounts.none? %>
+    <h3> You haven't connected yet please connect your Twitter Account</h3>
+    <%= button_to "Connect your Twitter Account", "/auth/twitter", class: "btn btn-primary"%>
+  <%end %>
+</div>
+
+
+
+
